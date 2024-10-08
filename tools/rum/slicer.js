@@ -21,6 +21,8 @@ const elems = {};
 
 const dataChunks = new DataChunks();
 
+window.dataChunks = dataChunks;
+
 const loader = new DataLoader();
 loader.apiEndpoint = API_ENDPOINT;
 
