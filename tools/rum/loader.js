@@ -119,8 +119,10 @@ export default class DataLoader {
     const days = 31;
     const promises = [];
     for (let i = 0; i < days; i += 1) {
-      promises.push(this.fetchUTCDay(date.toISOString()));
-      date.setDate(date.getDate() - 1);
+      for (let j = 0; j < 24; j += 1) {
+        promises.push(this.fetchUTCHour(date.toISOString()));
+        date.setTime(date.getTime() - (3600 * 1000));
+      }
     }
     const chunks = Promise.all(promises);
     return chunks;
@@ -133,6 +135,20 @@ export default class DataLoader {
     for (let i = 0; i < months; i += 1) {
       promises.push(this.fetchUTCMonth(date.toISOString()));
       date.setMonth(date.getMonth() - 1);
+    }
+    const chunks = Promise.all(promises);
+    return chunks;
+  }
+
+  async fetchPrevious3Months(endDate) {
+    const date = endDate ? new Date(endDate) : new Date();
+    const days = 90;
+    const promises = [];
+    for (let i = 0; i < days; i += 1) {
+      for (let j = 0; j < 24; j += 1) {
+        promises.push(this.fetchUTCHour(date.toISOString()));
+        date.setTime(date.getTime() - (3600 * 1000));
+      }
     }
     const chunks = Promise.all(promises);
     return chunks;

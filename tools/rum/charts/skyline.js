@@ -551,6 +551,14 @@ export default class SkylineChart extends AbstractChart {
         startDate,
         endDate,
       },
+      quarter: {
+        view: customView,
+        unit,
+        units,
+        focus,
+        startDate,
+        endDate,
+      },
     };
 
     const config = configs[view];

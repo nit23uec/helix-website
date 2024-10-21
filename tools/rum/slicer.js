@@ -288,7 +288,10 @@ async function loadData(config) {
     dataChunks.load(await loader.fetchPrevious31Days(endDate));
   } else if (scope === 'year') {
     dataChunks.load(await loader.fetchPrevious12Months(endDate));
+  } else if (scope === 'quarter') {
+    dataChunks.load(await loader.fetchPrevious12Months(endDate));
   }
+
 }
 
 export function updateState() {
